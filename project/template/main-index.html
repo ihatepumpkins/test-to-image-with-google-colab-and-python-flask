@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Image</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='output.css') }}">
+</head>
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+    * {
+        box-sizing: border-box;
+    }
+    #content{
+        background-image: url("{{ url_for('static', filename='assets/main-bg.jpeg') }}");
+    }
+    #main-section{
+        background-image: url("{{ url_for('static', filename='assets/bg-image.jpeg') }}");
+    }
+    #form{
+        width:100%;
+        display:flex;
+        justify-content:center;
+    }
+    #img{
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+    #image{
+        display:flex;
+        justify-content:center;
+    }
+</style>
+<body class="text-white flex flex-col min-h-screen overflow-x-hidden">
+
+    <!-- content-wrapper -->
+    <div class="w-screen h-screen bg-cover bg-no-repeat flex flex-col min-h-screen gap-y-8 items-center" id="content">
+
+        <!-- heading -->
+        <h1 class="font-sans text-4xl text-center mt-12">Transform Your Text into Stunning Visuals</h1>
+
+        <!-- sub-heading -->
+        <h2 class="text-xl text-center text-gray-300">Simply type any text, and watch the magic unfold. Instant AI-generated artwork for your words!</h2>
+        
+        <!-- Image-Slider -->
+        <div id="wrapper" class="relative w-96 h-96">
+            <div id="slider" class="flex border-red-500 border-2 transition-transform duration-1000 ease-in-out">
+                <div id="hero-image" class="w-full h-full border-white border-[1.5px] rounded-lg flex-shrink-0">
+                    <img src="{{ url_for('static', filename='assets/panda.png') }}" class="w-full h-full" alt="panda">
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="h-10 rounded-tr-full rounded-br-full">
+            <a href="#main-section">
+                <button class="bg-cyan-500 text-black text-2xl rounded-full p-2 h-full hover:underline">Start Now</button>
+            </a>
+        </div>
+    </div>
+
+    <!-- main-section -->
+    <section id="main-section" class="w-screen h-screen flex flex-col items-center justify-center gap-y-14 bg-cover bg-no-repeat overflow-hidden" id="main-section">
+        
+        <!-- input-field container -->
+         <form action="/" method="post" id="form">
+             <div class="w-4/5 flex justify-center border-white border-[1.5px] rounded-full focus-within:shadow-[0_0_2px_2px_rgb(0,255,255)] focus-within:border-transparent" id="input-section">
+                 <input class="h-10 border-l-[1.5px] rounded-tl-full rounded-bl-full pl-4 font-extralight text-lg text-white bg-zinc-400 bg-opacity-20 font-inter placeholder:text-base flex-1 focus:outline-none" type="text" placeholder="Type here to start creating..." name="prompt">
+     
+                 <div class="h-10 bg-zinc-400 bg-opacity-20 rounded-tr-full rounded-br-full">
+                         <button class="bg-cyan-500 text-black text-2xl rounded-full p-0.5 h-full" type="submit">Generate</button>
+                 </div>
+             </div>
+         </form>
+
+        <!-- generated-image container -->
+        <div class="bg-transparent w-4/5 rounded-lg" id="image">
+           {% if image_url %}
+                <img src="{{ image_url }}" alt="Generated Image" style="max-width: 100%; height: auto;" id="img">
+           {% endif %} 
+        </div>
+
+        <!-- download-btn -->
+        <div class="h-10 rounded-tr-full rounded-br-full">
+            <button class="bg-cyan-500 text-black text-2xl rounded-full p-2 h-full hover:underline">Download</button>
+        </div>
+    </section>
+</body>
+</html>
