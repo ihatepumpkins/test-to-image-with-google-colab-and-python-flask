@@ -1,7 +1,7 @@
 # Test to Image with Google Colab and Python Flask
-Download the ZIP file from the GitHub repository
-Extract the contents of the ZIP file to a folder.
-Upload the entire project folder to your Google Drive.
+1.Download the ZIP file from the GitHub repository<br>
+2.Extract the contents of the ZIP file to a folder.
+3.Upload the entire project folder to your Google Drive.
 Navigate to the repository on GitHub and locate the .ipynb file.
 Click on it, then click "Open in Colab". This will open the notebook in Google Colab.
 In Colab, go to the menu: Runtime > Change runtime type.
